@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script>
+    	$(function() {
+            $.ajax({
+                type: "GET",
+                url: "https://data.coa.gov.tw/Service/OpenData/ODwsv/ODwsvTravelFood.aspx",
+                success: showdata,
+                error: function () {
+                    alert("error!!");                    
+                }
+            });
+        });
+        function showdata(data){
+			console.log(data);
+			for(var i=0; i<data.length; i++){
+				var strHTML = '<li data-icon="phone"><a href="#"><img src="'+data[i].PicURL+'" alt=""><h3>'+data[i].Name+'</h3><p>'+data[i].Address+'</p><span class="ui-li-count">'+data[i].City+'</span></a><a href="tel:'+data[i].Tel+'">'+data[i].Tel+'</a></li>';
+				$("#mydata").append(strHTML);
+			};
+            
+            $("#mydata").listview("refresh");
+        };
+       
+    </script>
+</head>
+<body>
+    <!-- 我的首頁 -->
+    <div data-role="page" id="">
+        <div data-role="header" data-theme="b">
+            <h1>～餐廳listview～</h1>
+        </div>
+        <div data-role="main" class="ui-content">
+            <ul data-role="listview" data-inset="true" id="mydata">
+            	<li data-icon="phone">
+            		<a href="#">
+            			<img src="https://ezgo.coa.gov.tw/Uploads/opendata/TainmaMain01/APPLY_D/20151007173924.jpg" alt="">
+            			<h3>湖莓宴餐坊</h3>
+            			<p>苗栗縣大湖鄉富興村八寮彎2-7號4樓</p>
+            			<span class="ui-li-count">苗栗縣</span>
+            		</a>
+            		<a href="tel:037-875858">037-875858</a>
+            	</li>
+            </ul>
+        </div>
+        <div data-role="footer" data-theme="b" data-position="fixed">
+            <h2>尾巴</h2>
+        </div>
+    </div>
+</body>
+</html>

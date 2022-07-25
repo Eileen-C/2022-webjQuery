@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel</title>
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+    <!-- 我的首頁 -->
+    <div data-role="page">
+    	<!-- left-panel -->
+    	<div data-role="panel" id="left-panel">
+    		<p>this is a left panel</p>
+    	</div>
+    	<!-- right-panel -->
+    	<div data-role="panel" id="right-panel" data-position="right">
+    		<p>this is a right panel</p>
+    	</div>
+        <div data-role="header" data-theme="b">
+            <h1>～我的首頁～</h1>
+        </div>
+        <div data-role="main" class="ui-content">
+        	<a href="#left-panel" data-role="button" data-theme="b">left-panel</a>
+        	<a href="#right-panel" data-role="button" data-theme="b">right-panel</a>            
+        </div>
+        <div data-role="footer" data-theme="b" data-position="fixed">
+            <h2>尾巴</h2>
+        </div>
+    </div>
+</body>
+</html>

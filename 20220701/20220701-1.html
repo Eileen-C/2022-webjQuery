@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <!-- <script> 
+        $(document).ready(function(){
+            alert("警告！！！");
+            setInterval(function(){
+                alert("這還是警告！！！")
+            },1000); //method or function [setInterval(功能,多少毫秒)]
+        });
+    </script> -->
+</head>
+<body>
+    <!-- 我的首頁 -->
+    <div data-role="page" id="home">
+        <div data-role="header" data-theme="b">
+            <h1>～我的首頁～</h1>
+        </div>
+        <div data-role="main" class="ui-content">
+            <p>這是首頁</p>
+            <a href="#about" data-role="button" data-theme="b" data-transition="flow">關於我</a>
+            <a href="#works" data-role="button" data-theme="b" data-rel="dialog">作品集</a>
+            <a href="#works02" data-role="button" data-theme="b">作品集 - 2</a>
+        </div>
+        <div data-role="footer" data-theme="b" data-position="fixed">
+            <!-- div>ul>li*3>a{選單$} -->
+            <div data-role="navbar" data-iconpos="top" data-grid="c">
+                <ul>
+                    <li><a href="#home" data-icon="home" class="ui-btn-active">首頁</a></li>
+                    <li><a href="#about" data-icon="info">關於我</a></li>
+                    <li><a href="#works" data-icon="info">作品集</a></li>
+                    <li><a href="#works02" data-icon="info">作品集2</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 關於我 -->
+    <div data-role="page" id="about">
+        <div data-role="header" data-theme="b">
+            <a href="#" data-theme="a" data-rel="back">back</a>
+            <h1>關於我</h1>
+        </div>
+        <div data-role="main" class="ui-content">
+            <a href="#about001" data-role="button" data-theme="b" data-rel="popup">關於我介紹001</a>
+            <div data-role="popup" id="about001">
+                <img src="http://fakeimg.pl/100x100/ffff99/FFF/?text=About001" width="50%">
+            <p>
+                工具目的退出昨天禁止走向最為感覺營養思維現實硬盤演員部隊開發，查找版本年齡各項幹什麼證書表演，逐步。
+            </p>
+            </div>
+            <a href="#about002" data-role="button" data-theme="b" data-rel="popup">關於我介紹002</a>
+            <div data-role="popup" id="about002">
+                <img src="http://fakeimg.pl/100x100/99ffcc/FFF/?text=About002" width="50%">
+            <p>
+                上市小學性感裝備發展部隊中心，身上還沒有很快組織總體怎麼辦微微背景請教，斑竹以下意思多麼暫無有，的。
+            </p>
+            </div>
+        </div>
+        <div data-role="footer" data-theme="b" data-position="fixed">
+            <!-- div>ul>li*3>a{選單$} -->
+            <div data-role="navbar" data-iconpos="top" data-grid="c">
+                <ul>
+                    <li><a href="#home" data-icon="home">首頁</a></li>
+                    <li><a href="#about" data-icon="info" class="ui-btn-active">關於我</a></li>
+                    <li><a href="#works" data-icon="info">作品集</a></li>
+                    <li><a href="#works02" data-icon="info">作品集2</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 作品集 diolog-->
+    <div data-role="page" id="works">
+        <div data-role="header" data-theme="b">
+            <h1>～我的作品～</h1>
+        </div>
+        <div data-role="main" class="ui-content">       
+            <h2>資金眼神故意每個精品</h2>
+            <img src="http://fakeimg.pl/200x200/99ffcc/FFF/?text=img1" width="49%">
+            <img src="http://fakeimg.pl/200x200/99ffcc/FFF/?text=img1" width="49%">
+            <h2>最低舉報以便詳細信息</h2>
+            <img src="http://fakeimg.pl/200x200/ffff99/FFF/?text=img1" width="49%">
+            <img src="http://fakeimg.pl/200x200/ffff99/FFF/?text=img1" width="49%">
+            <h2>產業由此論壇講話難道</h2>
+            <img src="http://fakeimg.pl/200x200/66ccff/FFF/?text=img1" width="49%">
+            <img src="http://fakeimg.pl/200x200/66ccff/FFF/?text=img1" width="49%">
+        </div>
+    </div>
+    <!-- 作品集 - 2 -->
+    <div data-role="page" id="works02">
+        <div data-role="header" data-theme="b">
+            <a href="#" data-theme="a" data-rel="back">back</a>
+            <h1>作品集 - 2</h1>
+        </div>
+        <div data-role="main" class="ui-content">
+            <!-- works002_1 -->
+            <a href="#works002_1" data-rel="popup" data-position-to="window">
+                <img src="img/works002_1.jpg" alt="works002_1" width="49%" height="150px">
+            </a>
+            <div data-role="popup" id="works002_1" data-dismissible="false">
+                <a href="#" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right" data-rel="back">close</a>
+                <img src="img/works002_1.jpg" alt="works002_1" width="100%">
+                <h2>作品名稱：111</h2>
+                <h2>創作日期：</h2>
+                <p>那天電視劇大連權益沉默高中疾病細胞我都年齡城市，也沒顯卡說道能在人群材料忘記一半請教，讓她可惜力量。</p>
+            </div>
+            <!-- works002_2 -->
+            <a href="#works002_2" data-rel="popup" data-position-to="window">
+                <img src="img/works002_2.jpg" alt="works002_2" width="49%" height="150px">
+            </a>
+            <div data-role="popup" id="works002_2" data-dismissible="false">
+                <a href="#" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right" data-rel="back">close</a>
+                <img src="img/works002_2.jpg" alt="works002_2" width="100%">
+                <h2>作品名稱：222</h2>
+                <h2>創作日期：</h2>
+                <p>工業是這樣承受或許多年圖，支付之外幹什麼隊員面臨資本，技能當然一座印象合同歐美而已難道是他搜索引擎不。</p>           
+            </div>
+            <!-- works002_3 -->
+            <a href="#works002_3" data-rel="popup" data-position-to="window">
+                <img src="img/works002_3.jpg" alt="works002_3" width="49%" height="150px">
+            </a>
+            <div data-role="popup" id="works002_3" data-dismissible="false">
+                <a href="#" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right" data-rel="back">close</a>
+                <img src="img/works002_3.jpg" alt="works002_3" width="100%">
+                <h2>作品名稱：333</h2>
+                <h2>創作日期：</h2>
+                <p>工業是這樣承受或許多年圖，支付之外幹什麼隊員面臨資本，技能當然一座印象合同歐美而已難道是他搜索引擎不。</p>           
+            </div>
+            <!-- works002_4 -->
+            <a href="#works002_4" data-rel="popup" data-position-to="window">
+                <img src="img/works002_4.jpg" alt="works002_4" width="49%" height="150px">
+            </a>
+            <div data-role="popup" id="works002_4" data-dismissible="false">
+                <a href="#" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right" data-rel="back">close</a>
+                <img src="img/works002_4.jpg" alt="works002_4" width="100%">
+                <h2>作品名稱：444</h2>
+                <h2>創作日期：</h2>
+                <p>工業是這樣承受或許多年圖，支付之外幹什麼隊員面臨資本，技能當然一座印象合同歐美而已難道是他搜索引擎不。</p>           
+            </div>
+            <!-- works002_5 -->
+            <a href="#works002_5" data-rel="popup" data-position-to=window>
+                <img src="img/works002_5.jpg" alt="works002_5" width="49%" height="150px">
+            </a>
+            <div data-role="popup" id="works002_5" data-dismissible="false">
+                <a href="#" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right" data-rel="back">close</a>
+                <img src="img/works002_5.jpg" alt="works002_5" width="100%">
+                <h2>作品名稱：555</h2>
+                <h2>創作日期：</h2>
+                <p>打擊放心難得產生高度眼，大學生感覺到活力我要此時組成大戰機械幾個查找黑色後面最新台灣，浪費行情為何。</p>
+            </div>
+            <!-- works002_6 -->
+            <a href="#works002_6" data-rel="popup" data-position-to=window>
+                <img src="img/works002_6.jpg" alt="works002_6" width="49%" height="150px">
+            </a>
+            <div data-role="popup" id="works002_6" data-dismissible="false">
+                <a href="#" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right" data-rel="back">close</a>
+                <img src="img/works002_6.jpg" alt="works002_6" width="100%">
+                <h2>作品名稱：666</h2>
+                <h2>創作日期：</h2>
+                <p>打擊放心難得產生高度眼，大學生感覺到活力我要此時組成大戰機械幾個查找黑色後面最新台灣，浪費行情為何。</p>
+            </div>
+        </div>
+        <div data-role="footer" data-theme="b" data-position="fixed">
+            <!-- div>ul>li*3>a{選單$} -->
+            <div data-role="navbar" data-iconpos="top" data-grid="c">
+                <ul>
+                    <li><a href="#home" data-icon="home">首頁</a></li>
+                    <li><a href="#about" data-icon="info">關於我</a></li>
+                    <li><a href="#works" data-icon="info">作品集</a></li>
+                    <li><a href="#works02" data-icon="info" class="ui-btn-active">作品集2</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
