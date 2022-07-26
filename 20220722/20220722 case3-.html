@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<title>Apple</title>
 	<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
 	<script src="js/jquery-2.1.0.min.js"></script>
 	<script src="js/jquery.mobile-1.4.5.min.js"></script>
@@ -37,49 +37,58 @@
 	</style>
 	<script>
 		$(function(){
+			//bind監聽是否有"click"行為
 			$("#showback").bind("click",showback);
 			$("#shownext").bind("click",shownext);
 		});
 		var index = 0;
-		var curPimg, curPName;
-		var aryPSrc = new Array("iphone01.png","iphone02.jpeg","iphone03.jpeg");
-		var aryPName = new Array("iPhone11","iPhone12","iPhone13");
+		var curPimg, curPName, curPPrice, curPIntro;
+		var aryPSrc = new Array("iphone01.png","iphone02.jpeg","iphone03.jpeg","iphone04.jpeg","ipad.jpeg","MacBookAir.jpeg","MacBookPro.jpeg", "AppleWatch.jpeg");
+		var aryPName = new Array("iPhone11","iPhone12","iPhone13","iPhone14","iPad","MacBookAir","MacBookPro", "AppleWatch");
+		var aryPPrice = new Array("NT$16,500 元","NT$22,900 元","NT$25,900 元","NT$28,900 元", "NT$10,500 元","NT$30,900 元", "NT$74,900 元", "NT$11,900 元")
+		var aryPIntro = new Array("iPhone11介紹","iPhone12介紹","iPhone13介紹","iPhone14介紹", "iPad介紹" ,"MacBookAir介紹", "MacBookPro介紹", "AppleWatch介紹")
 
 		function showback() {
-			console.log("hi showback");
+			// console.log("hi showback");//在完成專案後務必刪除
 			index--;
 			if(index < 0){
-				index = 2;
+				index = 7;
 			}
 			curPimg = "img/" + aryPSrc[index];
-			curPName = aryPName[index];
+			curPName = "產品名稱：" + aryPName[index];
+			curPPrice = "價格：" + aryPPrice[index];
+			curPIntro = "簡介：" + aryPIntro[index];
 
 			$("#productImg").attr("src",curPimg);
 			$("#productName").text(curPName);
+			$("#productPrice").text(curPPrice);
+			$("#productIntro").text(curPIntro);
 		}
 
 		function shownext(){
-			console.log("hi shownext");
+			// console.log("hi shownext");
 			index++;
-			if(index > 2){
+			if(index > 7){
 				index = 0;
 			}
 			curPimg = "img/" + aryPSrc[index];
-			curPName = aryPName[index];
+			curPName = "產品名稱：" + aryPName[index];
+			curPPrice = "價格：" + aryPPrice[index];
+			curPIntro = "簡介：" + aryPIntro[index];
 
+			//.attr置換
 			$("#productImg").attr("src",curPimg);
 			$("#productName").text(curPName);
-		}
-
-		
-
+			$("#productPrice").text(curPPrice);
+			$("#productIntro").text(curPIntro);
+		}		
 	</script>
 </head>
 <body>
 	<div data-role="page" id="home">		
 		<div role="main" class="ui-content">
 			<div class="myLogo">
-				<img src="http://fakeimg.pl/350x200/00CED1/FFF/?text=LOGO">
+				<img src="./img/apple.png" alt="LOGO">
 			</div>
 			<!-- ui-grid-a表示切兩格 -->
 			<div class="ui-grid-a">
@@ -89,10 +98,8 @@
 				<div class="ui-block-b">
 					<a href="https://support.apple.com/zh-tw" target="blank" data-role="button" data-theme="b">Support</a>
 				</div>
-			</div>
-			
-		</div>
-		
+			</div>			
+		</div>		
 
 		<div data-role="footer" data-theme="b" data-position="fixed">
 			<div data-role="navbar" data-iconpos="top" data-grid="b">
@@ -118,9 +125,8 @@
 			</div>
 			<div class="productText">
 				<h2 id="productName">iPhone11</h2>
-				<p>型號：XXXXXX</p>
-				<p>價格：9,999元</p>
-				<p>簡介：安排呼吸即將只能財務躺在試題擔心，對此硬件使得業。</p>
+				<p id="productPrice">價格：NT$16,500 元</p>
+				<p id="productIntro">簡介：iPhone11介紹</p>
 			</div>
 		</div>
 		<div data-role="footer" data-theme="b" data-position="fixed">

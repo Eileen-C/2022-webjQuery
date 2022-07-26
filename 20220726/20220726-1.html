@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20220726-1</title>
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script>
+    	var flag_username = false;
+    	var flag_password = false;
+        var flag_intro = false;
+    	$(function(){
+    		//即時監聽帳號 this
+    		$("#username").bind("input propertychange", function(){
+    			console.log($(this).val().length);
+    			if($(this).val().length > 4 && $(this).val().length < 11){
+    				//符合規定
+    				$("#err_username").html("帳號符合規定，可以使用～");
+    				$("#err_username").css("color", "green");
+    				flag_username = true;
+    			}else{
+    				//不符合規定
+    				$("#err_username").html("帳號不符合規定，請重新輸入！");
+    				$("#err_username").css("color", "red");
+    				flag_username = false;
+    			}
+    		});
+
+            //即時監聽密碼
+            $("#password").bind("input propertychange", function(){
+                console.log($(this).val().length);
+                if($(this).val().length > 7 && $(this).val().length < 13){
+                    $("#err_password").html("密碼符合規定，可以使用～");
+                    $("#err_password").css("color", "green");
+                    flag_password = true;
+                }else{
+                    $("#err_password").html("密碼不符合規定，請重新輸入！");
+                    $("#err_password").css("color", "red");
+                    flag_password = false;
+                };
+            });
+
+            //即時監聽簡介intro
+            $("#intro").bind("input propertychange", function(){
+                console.log($(this).val().length);
+                if($(this).val().length > 9 && $(this).val().length < 21){
+                    $("#err_intro").html("簡介符合規定～");
+                    $("#err_intro").css("color", "green");
+                    flag_intro = true;
+                }else{
+                    $("#err_intro").html("簡介不符合規定！");
+                    $("#err_intro").css("color", "red");
+                    flag_intro = false;
+                };
+                
+            });
+
+
+            //用bind監聽#ok_btn是否有被點擊，點擊時回傳test、#username的值
+            $("#ok_btn").bind("click",function(){
+                if(flag_username && flag_password && flag_intro){
+                    console.log("test");
+                    console.log("帳號是" + $("#username").val());
+                    console.log("密碼是" + $("#password").val());
+
+
+                    var height = $("#height").val()/100;
+                    var weight = $("#weight").val();
+                    var bmi;
+                    var message;
+                    bmi = weight/(height*height);
+                    // bmi = bmi.toFixed(2);
+                    bmi = Math.round((bmi + Number.EPSILON) *100)/100;
+                    if(bmi < 18.5){
+                        message = '<h2>您的BMI為' + '<span style = "color: blue">' + bmi + '</span>' + '，判定為體重過輕！' + '</h2>';
+                    }else if(bmi > 18.5 && bmi <= 24){
+                        message = '<h2>您的BMI為' + '<span style = "color: green">' + bmi + '</span>' + '，判定為健康體位～' + '</h2>';
+                    }else{
+                        message = '<h2>您的BMI為' + '<span style = "color: red">' + bmi + '</span>' + '，判定為體位異常！' + '</h2>'; 
+                    }
+
+                    //輸入後將結果回傳至#showmsg
+                    $("#showmsg").html("<h2>帳號：" + $("#username").val()+ "</h2>"  + "<h2>密碼：" + $("#password").val() + "</h2>" + "<h2>簡介：" + $("#intro").val() + "</h2>" + "<h2>生日：" + $("#birthday").val() + "</h2>" + "<h2>身高：" + $("#height").val() + "cm" + "</h2>" + "<h2>體重：" + $("#weight").val() + "kg" + "</h2>" + "<h2>" + message + "</h2>"); 
+                }else{
+                    alert("欄位格式錯誤！！");
+                }               
+            });
+    	})
+    </script>
+</head>
+<body>
+    <!-- 我的首頁 -->
+    <div data-role="page" id="">
+        <div data-role="header" data-theme="b">
+            <h1>～我的首頁～</h1>
+        </div>
+        <div data-role="main" class="ui-content">
+            <div data-role="fieldcontain">
+            	<label for="username">帳號</label>
+            	<input type="text" id="username" name="username" placeholder="帳號請輸入5-10個字">           	
+            </div>
+            <!-- 回傳帳號是否符合規定 -->
+            <div id="err_username"></div>
+
+            <div data-role="fieldcontain">
+            	<label for="username">密碼</label>
+            	<input type="password" id="password" name="password" placeholder="密碼請輸入8-12個字">
+            </div>
+            <!-- 回傳密碼是否符合規定 -->
+            <div id="err_password"></div>
+
+            <div data-role="fieldcontain">
+                <label for="intro">簡介</label>
+                <textarea name="intro" id="intro" cols="30" rows="10" placeholder="簡介10~20個字"></textarea>
+            </div>
+            <!-- 回傳簡介是否符合規定 -->
+            <div id="err_intro"></div>
+
+            <div data-role="fieldcontain">
+                <label for="birthday">生日</label>
+                <input type="date" id="birthday" name="birthday">
+            </div>
+            <div data-role="fieldcontain">
+                <label for="height">身高(cm)</label>
+                <input type="range" id="height" name="height" min="80" max="200" step="1" value="160">
+            </div>
+            <div data-role="fieldcontain">
+                <label for="weight">體重(kg)</label>
+                <input type="range" id="weight" name="weight" min="40" max="100" step="1" value="60">
+            </div>
+
+            <a href="#" data-role="button" data-theme="b" id="ok_btn">確認</a>
+            <!-- 輸入後將結果回傳至此 -->
+            <div id="showmsg"></div>
+        </div>
+        <div data-role="footer" data-theme="b" data-position="fixed">
+            <h2>尾巴</h2>
+        </div>
+    </div>
+</body>
+</html>
