@@ -81,8 +81,14 @@
                         message = '<h2>您的BMI為' + '<span style = "color: red">' + bmi + '</span>' + '，判定為體位異常！' + '</h2>'; 
                     }
 
+                    //針對input的name是interest且被checked的的值push到myinterest陣列
+                    var myinterest = [];
+                    $.each($("input[name='interest']:checked"), function(){
+                        myinterest.push($(this).val());
+                    });
+
                     //輸入後將結果回傳至#showmsg
-                    $("#showmsg").html("<h2>帳號：" + $("#username").val()+ "</h2>"  + "<h2>密碼：" + $("#password").val() + "</h2>" + "<h2>簡介：" + $("#intro").val() + "</h2>" + "<h2>生日：" + $("#birthday").val() + "</h2>" + "<h2>身高：" + $("#height").val() + "cm" + "</h2>" + "<h2>體重：" + $("#weight").val() + "kg" + "</h2>" + "<h2>" + message + "</h2>"); 
+                    $("#showmsg").html("<h2>帳號：" + $("#username").val()+ "</h2>"  + "<h2>密碼：" + $("#password").val() + "</h2>" + "<h2>簡介：" + $("#intro").val() + "</h2>" + "<h2>生日：" + $("#birthday").val() + "</h2>" + "<h2>身高：" + $("#height").val() + "cm" + "</h2>" + "<h2>體重：" + $("#weight").val() + "kg" + "</h2>" + "<h2>" + message + "</h2>" + "<h2>性別：" + $("#sex").val() + "</h2>" + "<h2>最高學歷：" + $("#edu").val() + "</h2>" + "<h2>興趣：" + myinterest.join('、') + "</h2>"); 
                 }else{
                     alert("欄位格式錯誤！！");
                 }               
@@ -129,6 +135,41 @@
             <div data-role="fieldcontain">
                 <label for="weight">體重(kg)</label>
                 <input type="range" id="weight" name="weight" min="40" max="100" step="1" value="60">
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="sex">性別</label>
+                <select name="sex" id="sex" data-role="slider">
+                    <option value="男生">男生</option>
+                    <option value="女生">女生</option>
+                </select>                
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="edu">最高學歷</label>
+                <select name="edu" id="edu">
+                    <option value="研究所">研究所</option>
+                    <option value="大學(專)">大學(專)</option>
+                    <option value="高中職">高中職</option>
+                    <option value="其他">其他</option>
+                </select>
+            </div>
+
+            <!-- 複選 -->
+            <div data-role="fieldcontain">
+                <fieldset data-role="controlgroup"> 
+                    <legend>興趣</legend>
+                    <input type="checkbox" id="interest01" name="interest=" value="閱讀">
+                    <label for="interest01">閱讀</label>
+                    <input type="checkbox" id="interest02" name="interest" value="運動">
+                    <label for="interest02">運動</label>
+                    <input type="checkbox" id="interest03" name="interest" value="烹飪">
+                    <label for="interest03">烹飪</label>
+                    <input type="checkbox" id="interest04" name="interest" value="游泳">
+                    <label for="interest04">游泳</label>
+                    <input type="checkbox" id="interest05" name="interest" value="其他">
+                    <label for="interest05">其他</label>
+                </fieldset>
             </div>
 
             <a href="#" data-role="button" data-theme="b" id="ok_btn">確認</a>
