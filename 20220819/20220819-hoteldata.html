@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台北OK旅館</title>
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript">
+    	var regionTitle = new Array();
+    	var counter = new Array();
+    	var regionData = new Array();
+    	$(function() {
+    		$.ajax({
+    			type: "GET",
+    			url: "20220819-hoteldata-api.php",
+    			dataType: "json",
+    			success: showdata,
+    			error: function(){
+    				alert("error-20220819-hoteldata-api.php")
+    			}
+    		});
+    	});
+
+    	function showdata(data){
+    		console.log(data);
+    		for(i=0; i<data.length; i++){
+    			// 	console.log(data[i].display_addr);
+    			// 	console.log(data[i].display_addr.indexOf("區",0));
+    			// 	console.log(data[i].display_addr.substring(0,data[i].display_addr.indexOf("區",0)+1));
+    			var getRegion = data[i].display_addr.substring(0,data[i].display_addr.indexOf("區",0)+1);
+
+				//資料庫的地址中沒有區名的話，則設為其他區
+				if(getRegion == ""){
+					getRegion = "其他區";
+				}
+
+    			if(counter[getRegion] == undefined){
+    				counter[getRegion] = regionData.length;
+    				regionData.push(new Array());
+    				regionTitle[counter[getRegion]]=getRegion;
+    			}
+    			regionData[counter[getRegion]].push(data[i]);
+    		}
+    		console.log(regionTitle);
+    		console.log(counter);
+    		console.log(regionData);
+
+			$("#mylist01").empty();
+			for(var i = 0; i<regionTitle.length; i++){
+				var hotelTitle = "";
+				for (var j = 0; j<regionData[i].length; j++){
+					hotelTitle += regionData[i][j]["name"]+"|"
+				}
+
+				//regionData[counter[regionTitle[i]]]也可打成regionData[i]
+				var strHtml = '<li><a href="#thisHotel" data-title="'+regionTitle[i]+'"hotel-Title="'+hotelTitle+'">'+regionTitle[i]+'旅館<span class="ui-li-count">'+regionData[counter[regionTitle[i]]].length+'</span></a></li>'
+				$("#mylist01").append(strHtml);
+			}
+			$("#mylist01").listview("refresh");
+
+			//監聽是否有點擊#myllist01裡的a連結，並加入data-title屬性
+			$("a", $("#mylist01")).bind("click", function(){
+				console.log($(this).attr("data-title"));
+				//
+				getItem($(this).attr("data-title"));
+			});
+    	}
+
+		//title為自定義參數名稱。把藏的title資料加入#thisHotel的h1中
+		function getItem(title){
+			$("#thisHotel h1").html(title+"旅館列表");
+		}
+
+    </script>
+</head>
+<body>
+    <!-- 台北OK旅館區域分布 -->
+    <div data-role="page" id="home">
+        <div data-role="header" data-theme="b">
+            <h1>台北OK旅館</h1>
+        </div>
+        <div data-role="main" class="ui-content">
+            <ul data-role="listview" data-inset="true" id="mylist01">
+				<!-- data-title藏區域名稱 -->
+            	<li><a href="" data-title="XXX">台北市中山區旅館<span class="ui-li-count">99</span></a></li>
+            </ul>
+        </div>
+        <div data-role="footer" data-theme="b" data-position="fixed">
+            <h2>尾巴</h2>
+        </div>
+    </div>
+     <!-- 台北OK旅館區域列表 -->
+    <div data-role="page" id="thisHotel">
+        <div data-role="header" data-theme="b">
+            <h1>台北XX區旅館列表</h1>
+        </div>
+        <div data-role="main" class="ui-content">
+            <ul data-role="listview" data-inset="true" id="mylist02">
+            	<li>
+            		<a href="">
+            			<h3>XXX旅館</h3>
+            			<p>地址：XXXXXXX</p>
+            			<p>電話：XX-XXXXXXXX</p>            			
+            		</a>
+            	</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
