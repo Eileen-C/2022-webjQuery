@@ -50,12 +50,16 @@
 			$("#mylist01").empty();
 			for(var i = 0; i<regionTitle.length; i++){
 				var hotelTitle = "";
+				var hotelTel = "";
+				var hotelAddr = "";
 				for (var j = 0; j<regionData[i].length; j++){
-					hotelTitle += regionData[i][j]["name"]+"|"
+					hotelTitle += regionData[i][j]["name"]+"|";
+					hotelTel += regionData[i][j]["tel"]+"|";
+					hotelAddr += regionData[i][j]["display_addr"]+"|";
 				}
 
 				//regionData[counter[regionTitle[i]]]也可打成regionData[i]
-				var strHtml = '<li><a href="#thisHotel" data-title="'+regionTitle[i]+'"hotel-Title="'+hotelTitle+'">'+regionTitle[i]+'旅館<span class="ui-li-count">'+regionData[counter[regionTitle[i]]].length+'</span></a></li>'
+				var strHtml = '<li><a href="#thisHotel" data-title="'+regionTitle[i]+'"hotel-Title="'+hotelTitle+'"hotel-Tel="'+hotelTel+'" hotel-Addr="'+hotelAddr+'">'+regionTitle[i]+'旅館<span class="ui-li-count">'+regionData[counter[regionTitle[i]]].length+'</span></a></li>'
 				$("#mylist01").append(strHtml);
 			}
 			$("#mylist01").listview("refresh");
@@ -63,14 +67,34 @@
 			//監聽是否有點擊#myllist01裡的a連結，並加入data-title屬性
 			$("a", $("#mylist01")).bind("click", function(){
 				console.log($(this).attr("data-title"));
-				//
-				getItem($(this).attr("data-title"));
+				console.log($(this).attr("hotel-Title"));
+				console.log($(this).attr("hotel-Tel"));
+				console.log($(this).attr("hotel-Addr"));
+
+				getItem($(this).attr("data-title"), $(this).attr("hotel-Title"), $(this).attr("hotel-Tel"), $(this).attr("hotel-Addr"));
 			});
     	}
 
 		//title為自定義參數名稱。把藏的title資料加入#thisHotel的h1中
-		function getItem(title){
+		function getItem(title, hoteltitle, hoteltel, hoteladdr){
 			$("#thisHotel h1").html(title+"旅館列表");
+			console.log(hoteltitle);
+			console.log(hoteltel);
+			console.log(hoteladdr);
+			console.log(hoteltitle.split("|"));
+			arrayTitle = hoteltitle.split("|");
+			arrayTel = hoteltel.split("|");
+			arrayAddr = hoteladdr.split("|");
+			console.log(arrayTitle);
+			console.log(arrayTel);
+			console.log(arrayAddr);
+
+			$("#mylist02").empty();
+			for (var i = 0; i < arrayTitle.length-1; i++){
+				var strHTML = '<li><a href=""><h3>'+arrayTitle[i]+'</h3><p>地址：'+arrayAddr[i]+'</p><p>電話：'+arrayTel[i]+'</p></a></li>';
+				$("#mylist02").append(strHTML)
+			}
+			$("#mylist02").listview("refresh");
 		}
 
     </script>
@@ -94,6 +118,7 @@
      <!-- 台北OK旅館區域列表 -->
     <div data-role="page" id="thisHotel">
         <div data-role="header" data-theme="b">
+        	<a href="#" data-icon="arrow-l" data-theme="a" data-iconpos="notext" data-rel="back">Back</a>
             <h1>台北XX區旅館列表</h1>
         </div>
         <div data-role="main" class="ui-content">
